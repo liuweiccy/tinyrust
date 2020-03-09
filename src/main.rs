@@ -2,6 +2,7 @@ use std::collections::HashMap;
 use std::cmp::min;
 
 mod ch01;
+mod ch02;
 
 fn main() {
     println!("Hello, world!");
