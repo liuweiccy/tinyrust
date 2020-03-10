@@ -14,15 +14,15 @@ fn test_scope() {
     assert_eq!(v, "hello, Rust!");
 }
 
-pub fn math(op : fn(i32, i32) -> i32, a:i32, b:i32) -> i32 {
+pub fn math(op: fn(i32, i32) -> i32, a: i32, b: i32) -> i32 {
     op(a, b)
 }
 
-fn sum(a:i32, b:i32) -> i32 {
+fn sum(a: i32, b: i32) -> i32 {
     a + b
 }
 
-fn product(a:i32, b:i32) -> i32 {
+fn product(a: i32, b: i32) -> i32 {
     a * b
 }
 
@@ -34,7 +34,6 @@ fn test_func_args() {
     assert_eq!(math(sum, a, b), 5);
     assert_eq!(math(product, a, b), 6);
 }
-
 
 fn is_true() -> bool {
     true
@@ -56,13 +55,13 @@ const fn init_len() -> usize {
 
 #[test]
 fn test_ctfe_const() {
-    let arr = [0;init_len()];
+    let arr = [0; init_len()];
 }
 
 #[test]
 fn test_closure() {
     let out = 42;
-    fn add(i:i32, j:i32) -> i32 {
+    fn add(i: i32, j: i32) -> i32 {
         i + j
     }
 
@@ -71,10 +70,8 @@ fn test_closure() {
     //     i + j + out
     // }
 
-    let closure_annotated = |i:i32, j:i32| -> i32 {
-        i + j + out
-    };
-    let closure_inferred = |i,j| i + j + out;
+    let closure_annotated = |i: i32, j: i32| -> i32 { i + j + out };
+    let closure_inferred = |i, j| i + j + out;
 
     let i = 1;
     let j = 2;
@@ -93,14 +90,13 @@ fn closure_math<F: Fn() -> i32>(op: F) -> i32 {
 fn test_closure_args() {
     let a = 2;
     let b = 3;
-    assert_eq!(closure_math(||a+b), 5);
-    assert_eq!(closure_math(||a*b), 6);
+    assert_eq!(closure_math(|| a + b), 5);
+    assert_eq!(closure_math(|| a * b), 6);
 }
-
 
 fn two_times_impl() -> impl Fn(i32) -> i32 {
     let i = 2;
-    move |j| i *j
+    move |j| i * j
 }
 
 #[test]

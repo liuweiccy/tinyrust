@@ -1,5 +1,5 @@
-use std::collections::HashMap;
 use std::cmp::min;
+use std::collections::HashMap;
 
 mod ch01;
 mod ch02;
@@ -11,7 +11,7 @@ fn main() {
     let mut map = HashMap::new();
     map.insert(1, 2);
 
-    for i in 1 .. 10000 {
+    for i in 1..10000 {
         map.insert(i, 20);
     }
 
@@ -30,14 +30,15 @@ fn main() {
         }
     }
 
-    let x = vec![1,2,3,4];
+    let x = vec![1, 2, 3, 4];
     let y = x;
     //println!("{:?}", x);
     println!("{:?}", y);
 
-    let data1 = &[3,1,4,1,5,9,2,6];
-    let data2 = &[2,7,1,8,2,8,1,8];
-    let numbers = data1.iter()
+    let data1 = &[3, 1, 4, 1, 5, 9, 2, 6];
+    let data2 = &[2, 7, 1, 8, 2, 8, 1, 8];
+    let numbers = data1
+        .iter()
         .zip(data2.iter())
         .map(|(a, b)| a * b)
         .filter(|n| *n > 5)
@@ -45,9 +46,8 @@ fn main() {
         .collect::<Vec<_>>();
     println!("{:?}", numbers);
 
-
     let mut numbers = Vec::new();
-    for i in 0 .. min(data1.len(), data2.len()) {
+    for i in 0..min(data1.len(), data2.len()) {
         let n = data1[i] * data2[i];
         if n > 5 {
             numbers.push(n);
