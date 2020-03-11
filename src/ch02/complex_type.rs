@@ -93,7 +93,6 @@ fn test_empty_struct() {
     assert_eq!((..), std::ops::RangeFull);
 }
 
-
 enum Number {
     Zero,
     One,
@@ -107,5 +106,44 @@ fn test_enum() {
         Number::Zero => println!("0"),
         Number::One => println!("1"),
         Number::Two => println!("2"),
+    }
+}
+
+enum ColorRGB {
+    Red = 0xff0000,
+    Green = 0x00ff00,
+    Blue = 0x0000ff,
+}
+
+#[test]
+fn test_enum1() {
+    println!("roses are #{:06x}", ColorRGB::Red as i32);
+    println!("violets are #{:06x}", ColorRGB::Blue as i32);
+}
+
+#[derive(Debug)]
+enum IpAddr {
+    V4(u8, u8, u8, u8),
+    V6(String),
+}
+
+#[test]
+fn test_args_enum() {
+    let x: fn(u8, u8, u8, u8) -> IpAddr = IpAddr::V4;
+    let y: fn(String) -> IpAddr = IpAddr::V6;
+    let home: IpAddr = IpAddr::V4(127, 0, 0, 1);
+    println!("{:?}", home);
+    println!("x:{:?}", x(192, 168, 11, 100));
+    println!("y:{:?}", y("fe80::5498:17d0:1b17:5d75".to_string()));
+}
+
+#[test]
+fn test_option_enum() {
+    let s = Some(42);
+    let num = s.unwrap();
+    println!("num: {}", num);
+    match s {
+        Some(n) => println!("num is : {}", n),
+        None => (),
     }
 }
