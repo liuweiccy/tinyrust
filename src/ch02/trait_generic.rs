@@ -1,4 +1,4 @@
-use std::fmt::{Debug, Display, Formatter, Error};
+use std::fmt::{Debug, Display, Error, Formatter};
 
 fn match_option<T: Debug + Display>(o: Option<T>) {
     match o {
@@ -20,14 +20,13 @@ fn test_option_generic() {
     match_option(d);
 }
 
-
 #[derive(Clone)]
-struct Duck{
+struct Duck {
     name: String,
 }
 #[derive(Clone)]
 struct Pig {
-    name : String,
+    name: String,
 }
 
 trait Fly {
@@ -46,28 +45,32 @@ impl Fly for Pig {
     }
 }
 
-fn fly_static<T : Fly>(s : T) -> bool {
+fn fly_static<T: Fly>(s: T) -> bool {
     s.fly()
 }
 
-fn fly_dyn(s : &dyn Fly) -> bool {
+fn fly_dyn(s: &dyn Fly) -> bool {
     s.fly()
 }
 
 #[test]
 fn test_trait() {
-    let pig = Pig{name:"Petch".to_string()};
+    let pig = Pig {
+        name: "Petch".to_string(),
+    };
     assert_eq!(fly_static(pig.clone()), false);
-    
-    let duck = Duck{name:"GaGa".to_string()};
+
+    let duck = Duck {
+        name: "GaGa".to_string(),
+    };
     assert_eq!(fly_static(duck.clone()), true);
     assert_eq!(fly_dyn(&duck), true);
     assert_eq!(fly_dyn(&pig), false);
 }
 
 struct Point {
-    x:i32,
-    y:i32,
+    x: i32,
+    y: i32,
 }
 
 impl Debug for Point {
@@ -78,6 +81,6 @@ impl Debug for Point {
 
 #[test]
 fn test_debug_trait() {
-    let origin = Point{ x: 0, y: 0 };
+    let origin = Point { x: 0, y: 0 };
     println!("{:?}", origin);
 }

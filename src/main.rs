@@ -3,6 +3,7 @@ use std::collections::HashMap;
 
 mod ch01;
 mod ch02;
+mod ch03;
 
 fn main() {
     println!("Hello, world!");
