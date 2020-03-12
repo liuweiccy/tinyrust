@@ -74,7 +74,7 @@ fn test_zero_sized_type() {
 
 #[test]
 fn test_data_type() {
-    let v :Vec<()> = vec![();10];
+    let v: Vec<()> = vec![(); 10];
 
     for i in v {
         println!("{:?}", i);
@@ -84,17 +84,13 @@ fn test_data_type() {
 fn foo() -> ! {
     loop {
         println!("hello");
-        sleep(Duration::new(1,0));
+        sleep(Duration::new(1, 0));
     }
 }
 
 #[test]
 fn test_never_type() {
-    let i = if false {
-        foo()
-    } else {
-        100
-    };
+    let i = if false { foo() } else { 100 };
 
     assert_eq!(i, 100);
 }
@@ -110,13 +106,13 @@ fn test_enum_void() {
 #[test]
 fn test_type_infer() {
     let x = "1";
-    let int_x : u8 = x.parse().unwrap();
+    let int_x: u8 = x.parse().unwrap();
     println!("{:?}", int_x);
     println!("{:?}", x.parse::<u16>().unwrap());
 }
 
 #[test]
 fn test_type_infer2() {
-    let a:f64 = 0.0;
+    let a: f64 = 0.0;
     let a_pox = a.is_sign_positive();
 }
