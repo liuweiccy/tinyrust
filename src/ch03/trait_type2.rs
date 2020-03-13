@@ -16,7 +16,7 @@ impl Add<u64> for u32 {
 fn test_ops_overload() {
     let a = 1u32;
     let b = 10u64;
-    assert_eq!(a.add(b), 2);
+    assert_eq!(a.add(b), 11);
 }
 
 #[derive(Debug)]
