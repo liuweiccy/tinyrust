@@ -75,6 +75,10 @@ fn test_dispatch() {
     dyn_dispatch(&foo);
 }
 
+trait Foo1: Sized {
+    fn baz(&self);
+}
+
 
 
 
