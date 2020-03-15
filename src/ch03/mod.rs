@@ -1,7 +1,8 @@
 mod generic;
+mod impl_trait;
 mod trait_type;
 mod trait_type2;
+mod type_safety;
 mod type_system;
 mod web;
-mod type_safety;
-mod impl_trait;
+mod flag_trait;

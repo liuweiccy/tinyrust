@@ -11,7 +11,7 @@ use std::fmt::Debug;
 ///
 /// - trait中不能够包含关联常量
 trait Bar {
-    fn bax(self, x:u32);
+    fn bax(self, x: u32);
     fn bay(&self);
     fn baz(&mut self);
 }
@@ -26,15 +26,22 @@ trait Foo1 {
 
 trait Foo {
     // 该方法在在trait对象不能够被调用
-    fn new() -> Self where Self: Sized;
+    fn new() -> Self
+    where
+        Self: Sized;
     fn say(&self);
 }
 
 impl Foo for Name {
-    fn new() -> Self where Self: Sized {
-        Name { name: "rust".to_string() }
+    fn new() -> Self
+    where
+        Self: Sized,
+    {
+        Name {
+            name: "rust".to_string(),
+        }
     }
-    
+
     fn say(&self) {
         println!("name: {:?}", self.name);
     }
@@ -46,7 +53,7 @@ impl Foo1 for Name {
     }
 }
 
-fn dyn_dispatch(d : &dyn Foo) {
+fn dyn_dispatch(d: &dyn Foo) {
     d.say();
 }
 
@@ -55,6 +62,3 @@ fn test_trait_safety() {
     let name: Name = Foo::new();
     dyn_dispatch(&name);
 }
-
-
-

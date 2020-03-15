@@ -38,7 +38,10 @@ fn sum<T: Add<T, Output = T>>(a: T, b: T) -> T {
     a + b
 }
 
-fn sum2<T>(a:T, b:T) -> T where T: Add<T, Output = T> {
+fn sum2<T>(a: T, b: T) -> T
+where
+    T: Add<T, Output = T>,
+{
     a + b
 }
 
@@ -60,7 +63,10 @@ impl Bar for Foo {
     }
 }
 
-fn static_dispatch<T>(t: &T) where T: Bar {
+fn static_dispatch<T>(t: &T)
+where
+    T: Bar,
+{
     t.baz();
 }
 
@@ -78,47 +84,3 @@ fn test_dispatch() {
 trait Foo1: Sized {
     fn baz(&self);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
