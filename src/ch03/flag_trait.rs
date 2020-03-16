@@ -29,9 +29,10 @@ fn test_thread2() {
 
 #[test]
 fn test_no_send_sync() {
-    let x = Rc::new(vec![1,2,3,4]);
-    thread::spawn(move || {
-        x[1];
-    });
+    // 编译失败，因为Rc没有实现Send和Sync
+    // let x = Rc::new(vec![1,2,3,4]);
+    // thread::spawn(move || {
+    //     x[1];
+    // });
 }
 
