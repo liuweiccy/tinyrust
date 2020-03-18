@@ -59,7 +59,6 @@ fn test_impl_trait() {
     let pig = Pig;
     let duck = Duck;
     double_can_fly(pig, duck);
-
 }
 
 fn double_can_fly(a: impl Fly, b: impl Fly) {

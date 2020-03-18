@@ -1,6 +1,6 @@
-use std::rc::Rc;
-use std::ops::{Deref, Add};
 use std::borrow::Borrow;
+use std::ops::{Add, Deref};
+use std::rc::Rc;
 
 #[test]
 fn test_string_deref() {
@@ -10,17 +10,15 @@ fn test_string_deref() {
     println!("{:?}", c);
 }
 
-
 fn foo(s: &[i32]) {
     println!("{:?}", s[0])
 }
 
 #[test]
 fn test_vec_deref() {
-    let v = vec![1,2,3,4];
+    let v = vec![1, 2, 3, 4];
     foo(&v);
 }
-
 
 #[test]
 fn test_rc_deref() {
@@ -28,11 +26,10 @@ fn test_rc_deref() {
     println!("{:?}", x.chars());
 }
 
-
 #[test]
 fn test_hm_clone_deref() {
     let x = Rc::new("hello");
-    
+
     // 因为同时实现了clone方法，所以不能够自动的解引用
     let y = x.clone();
     let z = (*x).clone();
@@ -43,32 +40,32 @@ fn test_match_deref() {
     let x = "hello".to_string();
     match x.deref() {
         "hello" => println!("hello"),
-        _ => {},
+        _ => {}
     }
-    
+
     match x.as_ref() {
         "hello" => println!("hello"),
-        _ => {},
+        _ => {}
     }
-    
+
     match x.as_str() {
         "hello" => println!("hello"),
-        _ => {},
+        _ => {}
     }
-    
+
     match x.borrow() {
         "hello" => println!("hello"),
-        _ => {},
+        _ => {}
     }
-    
+
     match &(*x) {
         "hello" => println!("hello"),
-        _ => {},
+        _ => {}
     }
-    
+
     match &x[..] {
         "hello" => println!("hello"),
-        _ => {},
+        _ => {}
     }
 }
 
@@ -86,7 +83,7 @@ fn test_as2() {
     let b = a as u16;
     println!("{}", a);
     println!("{}", b);
-    
+
     let e = -1i32;
     let f = e as u32;
     println!("{:?}", e);
@@ -125,9 +122,9 @@ fn test_trait_same_method() {
 
 #[test]
 fn test_lifetime() {
-    let a : &'static str = "hello";
-    let b : &str = a as &str;
-    let c : &'static str = b as &'static str;
+    let a: &'static str = "hello";
+    let b: &str = a as &str;
+    let c: &'static str = b as &'static str;
 }
 
 #[test]
@@ -138,7 +135,7 @@ fn test_from() {
 }
 
 #[derive(Debug)]
-struct Person{
+struct Person {
     name: String,
 }
 
@@ -159,12 +156,11 @@ fn test_into() {
 struct Int(i32);
 impl Add<i32> for Int {
     type Output = i32;
-    
+
     fn add(self, rhs: i32) -> Self::Output {
         self.0 + rhs
     }
 }
-
 
 // 违反孤儿原则
 // impl Add<i32> for Option<Int> {
@@ -175,11 +171,10 @@ impl Add<i32> for Int {
 //     }
 // }
 
-
 // 因为Box有标志属性#[fundamental]所以不受孤儿原则影响
 impl Add<i32> for Box<Int> {
     type Output = i32;
-    
+
     fn add(self, rhs: i32) -> Self::Output {
         self.0 + rhs
     }
@@ -202,7 +197,7 @@ trait Swimmer {
     }
 }
 
-impl <T> Swimmer for Diver<T> { }
+impl<T> Swimmer for Diver<T> {}
 
 // stable版本不支持impl特化
 // impl Swimmer for Diver<&'static str> {
@@ -215,7 +210,9 @@ impl <T> Swimmer for Diver<T> { }
 fn test_impl_specialization() {
     let x = Diver::<&'static str> { inner: "Bob" };
     x.swim();
-    
-    let y = Diver::<String> { inner: "Alice".to_string() };
+
+    let y = Diver::<String> {
+        inner: "Alice".to_string(),
+    };
     y.swim();
 }

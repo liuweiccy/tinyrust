@@ -1,5 +1,5 @@
-use std::thread;
 use std::rc::Rc;
+use std::thread;
 
 fn test_copy<T: Copy>(i: T) {
     println!("hhh");
@@ -13,13 +13,13 @@ fn test_check_impl_copy() {
 
 #[test]
 fn test_thread() {
-    let x = vec![1,2,3,4];
+    let x = vec![1, 2, 3, 4];
     thread::spawn(|| x);
 }
 
 #[test]
 fn test_thread2() {
-    let mut x = vec![1,2,3,4];
+    let mut x = vec![1, 2, 3, 4];
     thread::spawn(move || {
         x.push(2);
     });
@@ -35,4 +35,3 @@ fn test_no_send_sync() {
     //     x[1];
     // });
 }
-
