@@ -75,8 +75,8 @@ fn test_smart_point_string_vec() {
     let s = String::from("hello");
     // 解引用后不能够确定大小所以编译器报错
     // let deref_s = *s;
-    
-    let v = vec![1,2,3];
+
+    let v = vec![1, 2, 3];
     // let deref_vec = *v;
 }
 
